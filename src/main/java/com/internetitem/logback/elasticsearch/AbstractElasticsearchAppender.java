@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import ch.qos.logback.core.UnsynchronizedAppenderBase;
+import com.internetitem.logback.elasticsearch.config.Authentication;
 import com.internetitem.logback.elasticsearch.config.ElasticsearchProperties;
 import com.internetitem.logback.elasticsearch.config.HttpRequestHeaders;
 import com.internetitem.logback.elasticsearch.config.Settings;
@@ -122,4 +123,11 @@ public abstract class AbstractElasticsearchAppender<T> extends UnsynchronizedApp
 		this.headers = httpRequestHeaders;
 	}
 
+        public void setRawJsonMessage(boolean rawJsonMessage) {
+                settings.setRawJsonMessage(rawJsonMessage);
+        }
+
+    public void setAuthentication(Authentication auth) {
+        settings.setAuthentication(auth);
+    }
 }
