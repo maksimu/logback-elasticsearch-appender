@@ -4,7 +4,6 @@ import com.internetitem.logback.elasticsearch.config.HttpRequestHeader;
 import com.internetitem.logback.elasticsearch.config.HttpRequestHeaders;
 import com.internetitem.logback.elasticsearch.config.Settings;
 import com.internetitem.logback.elasticsearch.util.ErrorReporter;
-import org.apache.commons.codec.binary.Base64;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -76,11 +75,6 @@ public class ElasticsearchWriter implements SafeWriter {
 			urlConnection = (HttpURLConnection)(url.openConnection());
 		}
 
-		// add basic authentication if present
-		if (url.getUserInfo() != null) {
-			String basicAuth = "Basic " + new String(new Base64().encode(url.getUserInfo().getBytes()));
-			urlConnection.setRequestProperty("Authorization", basicAuth);
-		}
 
 		try {
 			urlConnection.setDoInput(true);
